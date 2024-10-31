@@ -6,72 +6,83 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 17:26:49 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/10/10 18:01:44 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:15:57 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# include "LIBFT/libft.h"
+# include "MLX42/include/MLX42/MLX42.h"
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdint.h>
-# include <stdbool.h>
-# include <MLX42/mlx.h>
-# include "libft/libft.h"
+# include <limits.h>
+# include <fcntl.h>
 
+# define KEY_ESCAPE 53
 
 # define W 13
 # define S 1
 # define A 0
 # define D 2
 
-# define IMG 60
-
-typedef struct s_winsize
+typedef struct s_map
 {
-	int		height;
-	int		weight;
-}			t_winsize;
+	int	start_position;
+	int	collectible;
+	int	wall;
+	int	exit;
+	int	is_valid;
+}	t_map;
 
-typedef	struct s_player
+typedef struct s_image
 {
-	int		pos_x;
-	int		pos_y;
-	int		step;
-	int		trotpy;
-}				t_player;
+	void	*img;
+	int		h;
+	int		w;
+}	t_image;
 
-typedef	struct s_map
+typedef struct s_textures
 {
-	int		pos_x;
-	int		pos_y;
+	t_image	ground;
+	t_image	wall;
+	t_image	exit1;
+	t_image	exit2;
+	t_image	player;
+	t_image	enemy;
 	int		collectable;
-	int		pos_exit_x;
-	int		pos_exit_y;
-	char	**visited;
-	char	prev;
-	char	**map_ptr;
-}				t_map;
+}			t_textures;
 
-typedef struct s_collectable
+typedef struct s_img
 {
-	int		pos_x;
-	int		pos_y;
-	int		collected;
-}		t_collectable;
+	mlx_image_t *door_img;
+	mlx_image_t *ground_img;
+	mlx_image_t *wall_img;
+	mlx_image_t *exit1_img;
+	mlx_image_t *player_img;
+	mlx_image_t *enemy_img;
+}		 t_img;
 
-typedef struct s_game
+
+typedef struct s_info
 {
-	mlx_t			*mlx_ptr;
-	mlx_image_t		*img;
-	t_player		player;
-	t_mapdata		map;
-	t_texture		text;
-	t_collectable	*collectables;
-	mlx_image_t		*steps_img;
-}				t_game;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	int			x;
+	int			y;
+	int			h;
+	int			w;
+	mlx_image_t *img;
+	t_img		all_images;
+}	t_game;
 
+int 	init_mlx(t_game *game);
+void    loops(t_game *game);
+void 	draw(void *para);
+void	draw_doors(t_game *game);
 
+char		*get_next_line(int fd);
 #endif

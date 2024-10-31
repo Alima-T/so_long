@@ -6,73 +6,67 @@
 #    By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/06 16:37:47 by aokhapki          #+#    #+#              #
-#    Updated: 2024/10/07 18:47:04 by aokhapki         ###   ########.fr        #
+#    Updated: 2024/10/31 20:13:15 by aokhapki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 # Output executable
 NAME	= so_long
 
-#compiling
-CC		= cc
-CFLAGS	= -Wall -Wextra -Wunreachable-code -Ofast
+CFLAGS	= -Wall -Wextra -Werror 
+MLXFLAGS= -lglfw -L "$(HOME)/.brew/opt/glfw/lib/"
 
-# Paths to external libraries (MLX42 and Libft)
-LIBMLX	= ./MLX42
-LIBFT	= ./LIBFT
+CC		= gcc
+SRC_DIR = ./src/
+OBJ_DIR = ./objs/
+RM		= rm -rf
 
-# Header includes
-HEADERS := -I ./include -I $(LIBMLX)/include -I $(LIBFT)
+SRC		= 	$(SRC_DIR)so_long.c\
+			$(SRC_DIR)get_next_line.c\
+			$(SRC_DIR)create_board.c
+		
+OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
-# Frameworks (for macOS)
-FRAMEWORKS = -framework Cocoa -framework OpenGL -framework IOKit
+LIB = LIBFT/libft.a
+MLX42 = MLX42/build/libmlx42.a
 
-# ********
-# # Contains the X11 and MLX header files
-# INCLUDES = -I/opt/X11/include -Imlx
+$(NAME): $(MLX42) $(OBJ) $(LIB) 
+		@$(MAKE) -C Libft
+		@$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(MLX42) $(OBJ) $(LIB)
 
-# .c.o:
-# 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
-# ********
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Rule for compiling .c files to .o
-%.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"
-	
-LIBS	:= $(LIBMLX)/build/libmlx42.a -lglfw -framework Cocoa -framework OpenGL -framework IOKit -L$(LIBFT) -lft
+$(LIB):
+	@$(MAKE) -C Libft
 
-# Source Files TODO
-SRCS = so_long.c
+all: $(NAME)
 
-# Object Files
-OBJS = $(SRCS:.c=.o)
+# MLX42
+mlx:
+	git clone https://github.com/ashirzad313/MLX42 MLX42
 
-# Compilation rule
-all: libmlx libft $(NAME)
+# clean
+cleanmlx:
+		@rm -rf MLX42
+		@echo "$(CYAN)MLX42 folder is deleted!$(WHITE)"
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS) $(FRAMEWORKS) $(HEADERS)
-
-# Clean up object files
 clean:
-	@rm -rf $(OBJS)
-	@rm -rf $(LIBMLX)/build
-	@make -C $(LIBFT) clean
+		@$(MAKE) -C Libft clean
+		@rm -rf $(OBJ_DIR)
+		@rm -f libmlx42.a
+		@echo "$(CYAN)Object files cleaned!$(WHITE)"
 
-# Clean up object files and executable
 fclean: clean
-	@rm -rf $(NAME)
-	@make -C $(LIBFT) fclean
+		@$(MAKE) -C Libft fclean
+		@rm -f $(NAME)
+		@echo "$(CYAN)Executable and object files cleaned!$(WHITE)"
 
-# Rebuild the project
+cleanAll: fclean cleanmlx
+
 re: fclean all
 
-# Update
-t: $(NAME)
-	./$(NAME) 
-	
-# Cleaning and rebuilding the program from scratch and then running it
-ret: re t
-
 # Phony targets
-.PHONY: all, clean, fclean, re, libmlx, libft
+.PHONY: all clean fclean cleanmlx cleanAll re
