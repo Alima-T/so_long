@@ -6,12 +6,10 @@
 #    By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/06 16:37:47 by aokhapki          #+#    #+#              #
-#    Updated: 2024/10/31 20:13:15 by aokhapki         ###   ########.fr        #
+#    Updated: 2024/11/02 00:33:28 by aokhapki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-# Output executable
 NAME	= so_long
 
 CFLAGS	= -Wall -Wextra -Werror 
@@ -24,8 +22,10 @@ RM		= rm -rf
 
 SRC		= 	$(SRC_DIR)so_long.c\
 			$(SRC_DIR)get_next_line.c\
-			$(SRC_DIR)create_board.c
-		
+			$(SRC_DIR)init.c\
+			$(SRC_DIR)draw.c\
+			$(SRC_DIR)parsing.c
+			
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 LIB = LIBFT/libft.a
@@ -44,11 +44,9 @@ $(LIB):
 
 all: $(NAME)
 
-# MLX42
 mlx:
 	git clone https://github.com/ashirzad313/MLX42 MLX42
 
-# clean
 cleanmlx:
 		@rm -rf MLX42
 		@echo "$(CYAN)MLX42 folder is deleted!$(WHITE)"
@@ -68,5 +66,4 @@ cleanAll: fclean cleanmlx
 
 re: fclean all
 
-# Phony targets
 .PHONY: all clean fclean cleanmlx cleanAll re

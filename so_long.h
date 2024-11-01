@@ -6,9 +6,10 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 17:26:49 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/10/31 20:15:57 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/02 00:32:48 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -20,6 +21,12 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <fcntl.h>
+
+// # define ESC 53
+// # define UP_KEY 126
+// # define DOWN_KEY 125
+// # define RIGHT_KEY 124
+// # define LEFT_KEY 123
 
 # define KEY_ESCAPE 53
 
@@ -44,45 +51,61 @@ typedef struct s_image
 	int		w;
 }	t_image;
 
-typedef struct s_textures
-{
-	t_image	ground;
-	t_image	wall;
-	t_image	exit1;
-	t_image	exit2;
-	t_image	player;
-	t_image	enemy;
-	int		collectable;
-}			t_textures;
-
 typedef struct s_img
 {
-	mlx_image_t *door_img;
 	mlx_image_t *ground_img;
 	mlx_image_t *wall_img;
-	mlx_image_t *exit1_img;
+	mlx_image_t *exit_img;
 	mlx_image_t *player_img;
 	mlx_image_t *enemy_img;
+	mlx_image_t *collectable_img;
 }		 t_img;
 
 
-typedef struct s_info
+typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
 	char		**map;
+	int			map_fd;
 	int			x;
 	int			y;
 	int			h;
 	int			w;
+	int			height_map;
+	t_map		map_again;
+	// t_textures	img;
 	mlx_image_t *img;
 	t_img		all_images;
 }	t_game;
 
+// t_game	game; // no global variables
+int x;
+
+// void		validate_map_file(char *argv);
+// int			check_read_map(char *fline, int fd);
+// char		*confirm_map(char const *s, char const *set);
+// int			check_line_map(char *s0, char *s1);
+
+// void		get_map(char *path);
+// void		create_map(void);
+
+// int			handle_mouse_exit(void);
+// int			key(int key, void *param);
+// void		put_img(t_image texture, int x, int y);
+// void		go_player(int key);
+
+// void		finish(int code);
+// void		free_map(int line);
+// void		finish_game(void);
+
 int 	init_mlx(t_game *game);
 void    loops(t_game *game);
 void 	draw(void *para);
-void	draw_doors(t_game *game);
-
-char		*get_next_line(int fd);
+void	draw_map(t_game *game);
+void	draw_img(t_game *game, mlx_image_t *img, int j, int i);
+void    map_reader(t_game *game, char *map);
+void    fill_real_map(t_game *game, char *reader);
+int 	is_only_spaces(char *str);
+char	*get_next_line(int fd);
 #endif
