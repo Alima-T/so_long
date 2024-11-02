@@ -6,12 +6,12 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:10:09 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/02 00:37:51 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/02 21:45:05 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
+//sudo
 void draw(void *param)
 {
 	t_game *game;
