@@ -6,10 +6,9 @@
 #    By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/06 16:37:47 by aokhapki          #+#    #+#              #
-#    Updated: 2024/11/04 16:52:55 by aokhapki         ###   ########.fr        #
+#    Updated: 2024/11/07 20:34:35 by aokhapki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME	= so_long
 
@@ -26,8 +25,9 @@ SRC		= 	$(SRC_DIR)so_long.c\
 			$(SRC_DIR)init.c\
 			$(SRC_DIR)draw.c\
 			$(SRC_DIR)parsing.c\
-			$(SRC_DIR)play.c\
-			$(SRC_DIR)finish.c
+			$(SRC_DIR)control.c\
+			$(SRC_DIR)finish.c\
+			#$(SRC_DIR)play.c
 			
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
