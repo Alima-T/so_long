@@ -6,7 +6,7 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 17:26:49 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/07 20:34:19 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:31:42 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,6 @@
 # include <limits.h>
 # include <fcntl.h>
 
-// # define ESC 53
-// # define UP_KEY 126
-// # define DOWN_KEY 125
-// # define RIGHT_KEY 124
-// # define LEFT_KEY 123
-
-// # define KEY_ESCAPE 53
-
-// # define W 13
-// # define S 1
-// # define A 0
-// # define D 2
-
 typedef struct s_map
 {
 	int	start_position;
@@ -42,13 +29,6 @@ typedef struct s_map
 	int	exit;
 	int	is_valid;
 }	t_map;
-
-// typedef struct s_image
-// {
-// 	void	*img;
-// 	int		h;
-// 	int		w;
-// }	t_image;
 
 typedef struct s_player
 {
@@ -84,26 +64,8 @@ typedef struct s_game
 	mlx_image_t *img;
 	t_img		all_images;
 	int			col_count;
+	int 		steps;
 }			t_game;
-
-// t_game	game; // no global variables
-
-// void		validate_map_file(char *argv);
-// int			check_read_map(char *fline, int fd);
-// char		*confirm_map(char const *s, char const *set);
-// int			check_line_map(char *s0, char *s1);
-
-// void		get_map(char *path);
-// void		create_map(void);
-
-// int			handle_mouse_exit(void);
-// int			key(int key, void *param);
-// void		put_img(t_image texture, int x, int y);
-// void		go_player(int key);
-
-// void		finish(int code);
-// void		free_map(int line);
-// void		finish_game(void);
 
 // init.c
 int 	init_mlx(t_game *game);
@@ -119,19 +81,19 @@ void    fill_real_map(t_game *game, char *reader);
 int 	is_only_spaces(char *str);
 // GNL
 char	*get_next_line(int fd);
+// int		mouse_exit(void);
+void	go_player(t_game *game, int key);
 // play.c
 int		key_press (t_game *game,int key);
-// int		mouse_exit(void);
-int		check_path(t_game *game, int move_x, int move_y);
-void	go_player(t_game *game, int key);
+void	set_vars(t_game *game);
+void	init_game(t_game *game);
+void	draw_player(t_game *game);
+void	keyboard_control(void *parameter);
+
+void	img_to_img(mlx_image_t *dst, mlx_image_t *src, int x, int y);
+void	check_path(t_game *game, int new_y, int new_x, char c);
 // finish.c
 void	free_map(t_game *game, int line);
 void	finish(int exit_code);
-void set_vars(t_game *game);
-void	init_game(t_game *game);
-void draw_player(t_game *game);
-void keyboard_control(void *parameter);
-
-// void	finish_game(t_game *game);
-void	img_to_img(mlx_image_t *dst, mlx_image_t *src, int x, int y);
+void	finish_game(t_game *game);
 #endif
