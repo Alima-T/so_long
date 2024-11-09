@@ -6,7 +6,7 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:10:09 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/07 20:32:52 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/09 22:48:57 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ void draw(void *param)
 	draw_map(game);
 	draw_player(game);
 }
-
-// void	draw_img(t_game *game, mlx_image_t *img, int j, int i)
-// {
-// 	mlx_delete_image(game->mlx, game->img);
-// 	mlx_image_to_window(game->mlx, img, j * img->height, i * img->width);
-// }
 
 static int	pixel(mlx_image_t *image, uint32_t x, uint32_t y)
 {
@@ -69,6 +63,7 @@ void	img_to_img(mlx_image_t *dst, mlx_image_t *src, int x, int y)
 		i++;
 	}
 }
+
 void	draw_map(t_game *game)
 {
 	int		i;
@@ -116,65 +111,3 @@ void draw_player(t_game *game)
 		y++;
 	}
 }
-
-// void	put_img(t_image texture, int x, int y)
-// {
-// 	static int	n;
-
-// 	mlx_put_image_to_window(game.mlx, game.win, texture.img,
-// 		x * 50, y * 50);
-// 	if (texture.img == game.img.player.img)
-// 	{
-// 		game.x = x;
-// 		game.y = y;
-// 		printf("Steps: %d\n", n);
-// 		n++;
-// 	}
-// }
-// void	draw_map(t_game *game)
-// {
-// 	int		i;
-// 	int		j;
-	
-// 	i = 0;
-// 	while (i < game->height_map)
-// 	{
-// 		j = 0;
-// 		while (j < (int)ft_strlen(game->map[i]))
-// 		{
-// 			if (game->map[i][j] == '1')	
-// 				draw_img(game, game->all_images.wall_img, j, i);
-// 			else if (game->map[i][j] == '0' || game->map[i][j] == 'P'
-// 			|| game->map[i][j] == 'C' || game->map[i][j] == 'S'
-// 			 || game->map[i][j] == 'E')
-// 				draw_img(game, game->all_images.ground_img, j, i);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
-// void draw_player(t_game *game)
-// {
-// 	int		y;
-// 	int		x;
-	
-// 	y = 0;
-// 	while (y < game->height_map)
-// 	{
-// 		x = 0;
-// 		while (x < (int)ft_strlen(game->map[y]))
-// 		{
-// 			if (game->map[y][x] == 'P')
-// 				draw_img(game, game->all_images.player_img, game->player.x, game->player.y);
-// 			else if (game->map[y][x] == 'C')
-// 				draw_img(game, game->all_images.collectable_img, x, y);
-// 			else if (game->map[y][x] == 'S')
-// 				draw_img(game, game->all_images.enemy_img, x, y);
-// 			else if (game->map[y][x] == 'E')
-// 				draw_img(game, game->all_images.exit_img, x, y);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }

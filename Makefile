@@ -6,13 +6,13 @@
 #    By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/06 16:37:47 by aokhapki          #+#    #+#              #
-#    Updated: 2024/11/07 21:41:03 by aokhapki         ###   ########.fr        #
+#    Updated: 2024/11/09 22:51:24 by aokhapki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= so_long
 
-CFLAGS	= -Wall -Wextra -Werror 
+CFLAGS	= -Wall -Wextra -Werror
 MLXFLAGS= -lglfw -L "$(HOME)/.brew/opt/glfw/lib/"
 
 CC		= gcc
@@ -27,16 +27,19 @@ SRC		= 	$(SRC_DIR)so_long.c\
 			$(SRC_DIR)parsing.c\
 			$(SRC_DIR)control.c\
 			$(SRC_DIR)finish.c\
-			$(SRC_DIR)play.c
-			
+			$(SRC_DIR)check.c
+
+
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 LIB = LIBFT/libft.a
 MLX42 = MLX42/build/libmlx42.a
+PRINTF = FT_PRINTF/libftprintf.a
 
-$(NAME): $(MLX42) $(OBJ) $(LIB) 
+$(NAME): $(MLX42) $(OBJ) $(LIB) $(PRINTF)
 		@$(MAKE) -C Libft
-		@$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(MLX42) $(OBJ) $(LIB)
+		@$(MAKE) -C ft_printf
+		@$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(MLX42) $(OBJ) $(LIB) $(PRINTF)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
@@ -44,6 +47,9 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(LIB):
 	@$(MAKE) -C Libft
+	
+$(PRINTF):
+	@$(MAKE) -C ft_printf
 
 all: $(NAME)
 
@@ -56,12 +62,14 @@ cleanmlx:
 
 clean:
 		@$(MAKE) -C Libft clean
+		@$(MAKE) -C ft_printf clean
 		@rm -rf $(OBJ_DIR)
 		@rm -f libmlx42.a
 		@echo "$(CYAN)Object files cleaned!$(WHITE)"
 
 fclean: clean
 		@$(MAKE) -C Libft fclean
+		@$(MAKE) -C ft_printf clean
 		@rm -f $(NAME)
 		@echo "$(CYAN)Executable and object files cleaned!$(WHITE)"
 

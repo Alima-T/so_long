@@ -6,7 +6,7 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 18:48:44 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/08 16:34:42 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/09 22:48:46 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,42 @@ void keyboard_control(void *parameter)
 {
 	t_game *game;
 	char c;
+	int	i;
 
-	c = '1';
+	i = 0;
+	c = '\0';
 	game = parameter;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 			finish_game(game);
-	else if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+	is_key_down(game, &c);
+	while (i < 70000000)
+		i++;
+}
+
+void	is_key_down(t_game *game, char *c)
+{
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
-		c = 'w';
 		game->player.y-=1;
-		game->steps++;
-		printf("Steps count: %d\n", game->steps);
+		*c = 'w';
+		check_path(game, game->player.x, game->player.y, *c);
 	}
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 	{
-		c = 's';
 		game->player.y+=1;
-		game->steps++;
-		printf("Steps count: %d\n", game->steps);
+		*c = 's';
+		check_path(game, game->player.x, game->player.y, *c);
 	}
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
-		c = 'a';
 		game->player.x-=1;
-		game->steps++;
-		printf("Steps count: %d\n", game->steps);
-
+		*c = 'a';
+		check_path(game, game->player.x, game->player.y, *c);
 	}
 	else if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		c = 'd';
 		game->player.x+=1;
-		game->steps++;
-		printf("Steps count: %d\n", game->steps);
+		*c = 'd';
+		check_path(game, game->player.x, game->player.y, *c);
 	}
-	usleep(70000);
-	check_path(game, game->player.x, game->player.y, c);
 }

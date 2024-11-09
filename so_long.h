@@ -6,7 +6,7 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 17:26:49 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/08 16:31:42 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/09 22:52:04 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,14 @@
 # define SO_LONG_H
 # include "LIBFT/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
+# include "FT_PRINTF/ft_printf.h"
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <fcntl.h>
-
-typedef struct s_map
-{
-	int	start_position;
-	int	collectible;
-	int	wall;
-	int	exit;
-	int	is_valid;
-}	t_map;
+#include <stdbool.h>
 
 typedef struct s_player
 {
@@ -55,12 +48,9 @@ typedef struct s_game
 	int			map_fd;
 	int			x;
 	int			y;
-	int			h;
-	int			w;
 	int			height_map;
+	int			width_map;
 	t_player	player;
-	t_map		map_again;
-	// t_textures	img;
 	mlx_image_t *img;
 	t_img		all_images;
 	int			col_count;
@@ -68,7 +58,9 @@ typedef struct s_game
 }			t_game;
 
 // init.c
-int 	init_mlx(t_game *game);
+void 	init_mlx(t_game *game);
+void	init_textures(t_game *game);
+void count_vars(t_game *game, int *player_counter, int *exit_counter);
 // so_long.c
 void    loops(t_game *game);
 // draw.c
@@ -91,9 +83,18 @@ void	draw_player(t_game *game);
 void	keyboard_control(void *parameter);
 
 void	img_to_img(mlx_image_t *dst, mlx_image_t *src, int x, int y);
+
+// check map
+void		check_walls(t_game *game);
 void	check_path(t_game *game, int new_y, int new_x, char c);
+void	keep_checking(t_game *game, int new_y, int new_x);
+
 // finish.c
 void	free_map(t_game *game, int line);
 void	finish(int exit_code);
 void	finish_game(t_game *game);
+void	check_validity(t_game *game);
+void	check_row_lengths(t_game *game);
+void	is_key_down(t_game *game, char *c);
+void	free_temp_map(char **temp_map,int line);
 #endif
