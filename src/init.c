@@ -6,7 +6,7 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:10:45 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/10 15:28:10 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:06:16 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init(game->width_map * 45 + 2, game->height_map * 45 + 2,
-			"SO_LONG", false);
+			"SO_LONG", true);
 	if (!game->mlx)
 		finish_game(game);
 	game->img = mlx_new_image(game->mlx, game->width_map * 45 + 2,

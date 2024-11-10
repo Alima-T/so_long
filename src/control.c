@@ -6,7 +6,7 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 18:48:44 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/10 20:34:05 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/10 21:19:28 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	keyboard_control(void *parameter)
 	c = '\0';
 	game = parameter;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-	{
 		finish_game(game);
-	}
 	is_key_down(game, &c);
 	while (i < 70000000)
 		i++;
@@ -62,15 +60,15 @@ void	keep_checking(t_game *game, int new_y, int new_x)
 {
 	if (game->map[new_x][new_y] == 'E' && game->col_count == 0)
 	{
-		printf("Step number: %d \n", game->steps);
+		ft_printf("Count of steps: %d \n", game->steps);
 		ft_printf("Congratulations, You Won!!!\n");
 		finish_game(game);
 	}
 	if (game->map[new_x][new_y] == 'S')
 	{
-		printf("Step number: %d \n", game->steps);
+		ft_printf("Count of steps: %d \n", game->steps);
 		ft_printf("You are eaten by enemy\n");
 		finish_game(game);
 	}
-	printf("Step number: %d \n", game->steps);
+	ft_printf("Count of steps: %d \n", game->steps);
 }
