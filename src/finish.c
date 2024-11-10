@@ -6,13 +6,13 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 19:27:36 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/09 22:57:21 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:30:54 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	free_temp_map(char **temp_map,int line)
+void	free_temp_map(char **temp_map, int line)
 {
 	int	i;
 

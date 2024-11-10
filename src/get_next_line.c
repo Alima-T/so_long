@@ -6,7 +6,7 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 20:01:02 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/10/31 20:01:03 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:28:02 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*cut_str(char **s)
 		*s = ft_strdup(temp);
 		free(temp);
 		temp = NULL;
-	}	
+	}
 	else
 	{
 		line = ft_substr(*s, 0, ft_strlen(*s));
@@ -82,7 +82,7 @@ char	*back_str(char **ostat, char *buffer, int fd)
 }
 
 char	*get_next_line(int fd)
-{	
+{
 	static char	*ostat;
 	char		*buffer;
 	char		*line;

@@ -6,16 +6,16 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:10:09 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/09 22:48:57 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/10 15:27:42 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void draw(void *param)
+void	draw(void *param)
 {
-	t_game *game;
-	
+	t_game	*game;
+
 	game = param;
 	draw_map(game);
 	draw_player(game);
@@ -36,8 +36,8 @@ static int	pixel(mlx_image_t *image, uint32_t x, uint32_t y)
 	g = pixel[1];
 	b = pixel[2];
 	a = pixel[3];
-	  if (a == 0)
-        return (-1);
+	if (a == 0)
+		return (-1);
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
@@ -56,7 +56,7 @@ void	img_to_img(mlx_image_t *dst, mlx_image_t *src, int x, int y)
 		while (j < src->width)
 		{
 			color = pixel(src, j, i);
-			if (color != -1 )
+			if (color != -1)
 				mlx_put_pixel(dst, x + j, y + i, color);
 			j++;
 		}
@@ -66,20 +66,20 @@ void	img_to_img(mlx_image_t *dst, mlx_image_t *src, int x, int y)
 
 void	draw_map(t_game *game)
 {
-	int		i;
-	int		j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	while (i < game->height_map)
 	{
 		j = 0;
 		while (j < (int)ft_strlen(game->map[i]))
 		{
-			if (game->map[i][j] == '1')	
+			if (game->map[i][j] == '1')
 				img_to_img(game->img, game->all_images.wall_img, j, i);
 			else if (game->map[i][j] == '0' || game->map[i][j] == 'P'
-			|| game->map[i][j] == 'C' || game->map[i][j] == 'S'
-			 || game->map[i][j] == 'E')
+				|| game->map[i][j] == 'C' || game->map[i][j] == 'S'
+				|| game->map[i][j] == 'E')
 				img_to_img(game->img, game->all_images.ground_img, j, i);
 			j++;
 		}
@@ -87,11 +87,11 @@ void	draw_map(t_game *game)
 	}
 }
 
-void draw_player(t_game *game)
+void	draw_player(t_game *game)
 {
-	int		y;
-	int		x;
-	
+	int	y;
+	int	x;
+
 	y = 0;
 	while (y < game->height_map)
 	{
@@ -99,7 +99,8 @@ void draw_player(t_game *game)
 		while (x < (int)ft_strlen(game->map[y]))
 		{
 			if (game->map[y][x] == 'P')
-				img_to_img(game->img, game->all_images.player_img, game->player.x, game->player.y);
+				img_to_img(game->img, game->all_images.player_img,
+					game->player.x, game->player.y);
 			else if (game->map[y][x] == 'C')
 				img_to_img(game->img, game->all_images.collectable_img, x, y);
 			else if (game->map[y][x] == 'S')
