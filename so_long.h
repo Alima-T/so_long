@@ -6,7 +6,7 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 17:26:49 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/10 21:37:41 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:35:28 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void			validate_path(t_game *game, int start_x, int start_y,
 void			draw(void *para);
 void			draw_map(t_game *game);
 void			draw_player(t_game *game);
-static int		pixel(mlx_image_t *image, uint32_t x, uint32_t y);
+int				pixel(mlx_image_t *image, uint32_t x, uint32_t y);
 void			img_to_img(mlx_image_t *dst, mlx_image_t *src, int x, int y);
 // parsing.c
 void			map_reader(t_game *game, char *map);

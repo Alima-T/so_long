@@ -6,7 +6,7 @@
 /*   By: aokhapki <aokhapki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:10:09 by aokhapki          #+#    #+#             */
-/*   Updated: 2024/11/10 15:27:42 by aokhapki         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:35:39 by aokhapki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw(void *param)
 	draw_player(game);
 }
 
-static int	pixel(mlx_image_t *image, uint32_t x, uint32_t y)
+int	pixel(mlx_image_t *image, uint32_t x, uint32_t y)
 {
 	int		r;
 	int		g;
