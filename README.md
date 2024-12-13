@@ -10,7 +10,7 @@
 - [Game Mechanics](#game-mechanics)
 - [Evaluation Criteria](#evaluation-criteria)
 - [Resources](#resources)
-- [Support](#support)
+- [Gratitude](#gratitude)
 
 ---
 
@@ -111,7 +111,7 @@ Maps must be `.ber` files and follow these rules:
 - [MLX42 Documentation](https://github.com/codam-coding-college/MLX42)
 ---
 
-## Support
+## Gratitude
 
 Special gratitude to [roma-sh](https://github.com/roma-sh)
 for the valuable support and feedback during the development of this project. 
