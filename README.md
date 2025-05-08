@@ -61,7 +61,7 @@ Run the game with a valid map file:
 ```
 Example:
 ```bash
-./so_long maps/example.ber
+./so_long maps/map4.ber
 ```
 
 ### Map Format
