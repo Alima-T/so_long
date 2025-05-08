@@ -45,7 +45,7 @@ The objective of the SO_LONG project is to:
 
 1. Clone the repository:
    ```bash
-   git clone [<https://github.com/Alima-T/so_long>](https://github.com/Alima-T/SO_LONG.git)
+   git clone https://github.com/Alima-T/so_long so_long
    cd so_long
    ```
 2. Compile the game:
