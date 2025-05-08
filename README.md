@@ -50,6 +50,7 @@ The objective of the SO_LONG project is to:
    ```
 2. Compile the game:
    ```bash
+   make mlx
    make
    ```
 
